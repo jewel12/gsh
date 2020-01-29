@@ -1,4 +1,4 @@
-.PHONY: clean
+.PHONY: clean test
 
 all: gsh
 
@@ -7,3 +7,6 @@ gsh: clean
 
 clean:
 	-rm gsh
+
+test:
+	go test ./...
