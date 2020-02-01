@@ -71,12 +71,24 @@ func pipe(cmds []*exec.Cmd) {
 	}
 }
 
+func showPrompt() {
+	fmt.Print("(^ _ ^)b >> ")
+}
+
+func showErrorPrompt() {
+	fmt.Print("(^ x ^)p >> ")
+}
+
 func loop() {
+	showPrompt()
 	for {
-		fmt.Print("GINO (^ _ ^) WAN >> ")
 		line := readline()
 		cmds := parse(line)
-		execute(cmds)
+		if err := execute(cmds); err != nil {
+			showErrorPrompt()
+		} else {
+			showPrompt()
+		}
 	}
 }
 
